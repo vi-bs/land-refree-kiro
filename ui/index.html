@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>LandReferee</title>
+</head>
+<body>
+  <h1>LandReferee</h1>
+
+  <label>Budget</label>
+  <select id="budget">
+    <option>Low</option>
+    <option>Medium</option>
+    <option>High</option>
+  </select>
+
+  <label>Risk Tolerance</label>
+  <select id="risk">
+    <option>Low</option>
+    <option>Medium</option>
+    <option>High</option>
+  </select>
+
+  <label>Time Horizon</label>
+  <select id="time">
+    <option>Short-term</option>
+    <option>Long-term</option>
+  </select>
+
+  <br/><br/>
+  <button onclick="evaluate()">Evaluate</button>
+
+  <pre id="output"></pre>
+
+  <script>
+    async function evaluate() {
+      const response = await fetch("http://localhost:3000/evaluate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          budget: budget.value,
+          risk_tolerance: risk.value,
+          time_horizon: time.value
+        })
+      });
+
+      const data = await response.json();
+      document.getElementById("output").innerText =
+        JSON.stringify(data, null, 2);
+    }
+  </script>
+</body>
+</html>
