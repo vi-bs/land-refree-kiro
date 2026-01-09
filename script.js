@@ -11,23 +11,33 @@ document.getElementById("evaluateBtn").addEventListener("click", async () => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ budget, risk_tolerance, time_horizon })
     });
-
     const data = await response.json();
+
     const resultsDiv = document.getElementById("results");
+    const chartCanvas = document.getElementById("radarChart");
 
-    // Display textual results
-    let html = `<h2>Property: ${data.property.location}</h2>`;
-    html += `<ul>`;
-    data.scenarios.forEach(s => {
-      html += `<li><strong>${s.type}</strong> - ROI: ${s.roi_score}, Risk: ${s.risk_score}, Feasibility: ${s.feasibility_score}<br>`;
-      html += `Trade-offs: ${s.tradeoffs.join(", ")}</li><br>`;
-    });
-    html += `</ul>`;
-    html += `<p><em>${data.decision_guidance}</em></p>`;
+    // Clear old results
+    resultsDiv.classList.remove("visible");
+    chartCanvas.classList.remove("visible");
+    setTimeout(() => {
+      let html = `<h2>📍 Property: ${data.property.location}</h2>`;
+      data.scenarios.forEach((s, index) => {
+        html += `
+          <div class="result-item">
+            <strong>${index === 0 ? "🏆 " : ""}${s.type}</strong><br>
+            <span class="badge roi">ROI: ${s.roi_score}</span>
+            <span class="badge risk">Risk: ${s.risk_score}</span>
+            <span class="badge feasibility">Feasibility: ${s.feasibility_score}</span><br>
+            Trade-offs: ${s.tradeoffs.map(t => `<span class="tradeoff">${t}</span>`).join(' ')}
+          </div>
+        `;
+      });
+      html += `<p><em>${data.decision_guidance}</em></p>`;
+      resultsDiv.innerHTML = html;
+      resultsDiv.classList.add("visible");
+    }, 200);
 
-    resultsDiv.innerHTML = html;
-
-    // Prepare radar chart
+    // Radar chart animation
     const labels = data.scenarios.map(s => s.type);
     const roiData = data.scenarios.map(s => s.roi_score);
     const riskData = data.scenarios.map(s => s.risk_score);
@@ -36,25 +46,10 @@ document.getElementById("evaluateBtn").addEventListener("click", async () => {
     const chartData = {
       labels,
       datasets: [
-        {
-          label: "ROI",
-          data: roiData,
-          borderColor: "green",
-          backgroundColor: "rgba(0,128,0,0.2)",
-        },
-        {
-          label: "Risk",
-          data: riskData,
-          borderColor: "red",
-          backgroundColor: "rgba(255,0,0,0.2)",
-        },
-        {
-          label: "Feasibility",
-          data: feasibilityData,
-          borderColor: "blue",
-          backgroundColor: "rgba(0,0,255,0.2)",
-        },
-      ],
+        { label: "ROI", data: roiData, borderColor: "#16a34a", backgroundColor: "rgba(16,163,74,0.3)" },
+        { label: "Risk", data: riskData, borderColor: "#dc2626", backgroundColor: "rgba(220,38,38,0.3)" },
+        { label: "Feasibility", data: feasibilityData, borderColor: "#2563eb", backgroundColor: "rgba(37,99,235,0.3)" }
+      ]
     };
 
     const config = {
@@ -62,20 +57,15 @@ document.getElementById("evaluateBtn").addEventListener("click", async () => {
       data: chartData,
       options: {
         responsive: true,
-        scales: {
-          r: {
-            min: 0,
-            max: 10,
-          },
-        },
-      },
+        animation: { duration: 1000 },
+        scales: { r: { min: 0, max: 10 } },
+        plugins: { legend: { position: 'top' } }
+      }
     };
 
-    if (radarChart) {
-      radarChart.destroy();
-    }
-    const ctx = document.getElementById("radarChart").getContext("2d");
-    radarChart = new Chart(ctx, config);
+    if (radarChart) radarChart.destroy();
+    radarChart = new Chart(chartCanvas.getContext("2d"), config);
+    chartCanvas.classList.add("visible");
 
   } catch (err) {
     alert("Failed to fetch from backend. Make sure backend is running.");
