@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Land Referee</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>Land Referee</h1>
+
+    <div class="controls">
+      <label>Budget:
+        <select id="budget">
+          <option value="Low">Low</option>
+          <option value="Medium">Medium</option>
+          <option value="High" selected>High</option>
+        </select>
+      </label>
+
+      <label>Risk Tolerance:
+        <select id="risk">
+          <option value="Low" selected>Low</option>
+          <option value="Medium">Medium</option>
+          <option value="High">High</option>
+        </select>
+      </label>
+
+      <label>Time Horizon:
+        <select id="time">
+          <option value="Short-term">Short-term</option>
+          <option value="Medium-term">Medium-term</option>
+          <option value="Long-term" selected>Long-term</option>
+        </select>
+      </label>
+
+      <button id="evaluateBtn">Evaluate</button>
+    </div>
+
+    <div id="results"></div>
+    <canvas id="radarChart" width="400" height="400"></canvas>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
