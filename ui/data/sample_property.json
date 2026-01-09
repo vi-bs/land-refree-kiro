@@ -1,0 +1,27 @@
+{
+  "property_id": "BLR-IND-OSM-001",
+  "location": "Indiranagar, Bangalore",
+  "coordinates": {
+    "lat": 12.9716,
+    "lon": 77.6412
+  },
+  "plot_size_sqft": 2400,
+  "road_access": "Primary road",
+  "zoning_type": "Mixed-use",
+  "amenity_profile": {
+    "restaurants": 18,
+    "cafes": 11,
+    "retail_shops": 22,
+    "schools": 3,
+    "metro_station_distance_km": 0.4
+  },
+  "neighborhood_signals": {
+    "footfall_proxy": "High",
+    "residential_density": "High",
+    "commercial_activity": "High"
+  },
+  "data_sources": [
+    "OpenStreetMap",
+    "Public ward-level census summaries"
+  ]
+}

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LandReferee Demo</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+    .demo-section { background: #f5f5f5; padding: 15px; margin: 15px 0; border-radius: 8px; }
+    .api-response { background: #1e293b; color: #e2e8f0; padding: 15px; border-radius: 8px; overflow-x: auto; }
+    pre { white-space: pre-wrap; font-size: 12px; }
+  </style>
+</head>
+<body>
+  <h1>🏡 LandReferee: Constraint-Aware Real Estate Decision Assistant</h1>
+  
+  <div class="demo-section">
+    <h2>What LandReferee Does</h2>
+    <p><strong>The system compares multiple development scenarios for a property under user-defined constraints and explains trade-offs using Kiro, allowing users to make informed decisions.</strong></p>
+    
+    <h3>Key Features:</h3>
+    <ul>
+      <li>✅ Referee-style neutral comparison (no "best" recommendations)</li>
+      <li>✅ 5 comprehensive metrics: ROI, Risk, Feasibility, Area Fit, Regulatory Complexity</li>
+      <li>✅ Constraint-aware analysis with personalized warnings</li>
+      <li>✅ Trade-off explanations and conditional guidance</li>
+      <li>✅ Bangalore-focused with curated property data</li>
+    </ul>
+  </div>
+
+  <div class="demo-section">
+    <h2>Sample API Request & Response</h2>
+    <p><strong>Input:</strong> User with Medium budget, Low risk tolerance, Long-term horizon, interested in Indiranagar</p>
+    
+    <div class="api-response">
+      <pre>POST /evaluate
+{
+  "budget": "Medium",
+  "risk_tolerance": "Low", 
+  "time_horizon": "Long-term",
+  "location": "Indiranagar, Bangalore"
+}</pre>
+    </div>
+
+    <p><strong>Referee Analysis Output:</strong></p>
+    <div class="api-response">
+      <pre>REFEREE ANALYSIS:
+• If ROI is your priority: Cafe / Hotel shows highest potential (10.0/10)
+• If risk minimization matters: Residential Housing offers lowest risk (2.2/10)  
+• If quick execution is key: Residential Housing has best feasibility (9.1/10)
+
+Each scenario presents different trade-offs. Your Medium budget, Low risk tolerance, 
+and Long-term timeline will determine which factors matter most to your specific situation.
+
+⚠️ Risk score exceeds your low risk tolerance (Cafe/Hotel: 6.4/10 risk)</pre>
+    </div>
+  </div>
+
+  <div class="demo-section">
+    <h2>How to Run</h2>
+    <ol>
+      <li><strong>Backend:</strong> <code>npm start</code> (runs on port 3001)</li>
+      <li><strong>Frontend:</strong> Open <code>ui/index.html</code> in browser</li>
+      <li><strong>Test API:</strong> Use curl or Postman with the endpoint above</li>
+    </ol>
+  </div>
+
+  <div class="demo-section">
+    <h2>Architecture</h2>
+    <pre>UI (HTML/JS) → Express Backend → Referee Logic → Structured JSON Response</pre>
+    <p>The referee system uses constraint-aware scoring algorithms and generates neutral, educational comparisons rather than prescriptive recommendations.</p>
+  </div>
+</body>
+</html>

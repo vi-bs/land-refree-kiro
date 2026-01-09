@@ -1,52 +1,67 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>LandReferee</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Land Referee</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-  <h1>LandReferee</h1>
-
-  <label>Budget</label>
-  <select id="budget">
-    <option>Low</option>
-    <option>Medium</option>
-    <option>High</option>
+  <h1>🏡 Land Referee</h1>
+  <div class="container">
+    <!-- Controls Panel -->
+    <div class="controls">
+      <h2>Choose Your Preferences</h2>
+      <label>
+  Location
+  <select id="location">
+    <option value="Any">Any</option>
+    <option value="Indiranagar, Bangalore">Indiranagar</option>
+    <option value="MG Road, Bangalore">MG Road</option>
+    <option value="Koramangala, Bangalore">Koramangala</option>
+    <option value="Whitefield, Bangalore">Whitefield</option>
+    <option value="JP Nagar, Bangalore">JP Nagar</option>
+    <option value="Electronic City, Bangalore">Electronic City</option>
+    <option value="Rajajinagar, Bangalore">Rajajinagar</option>
+    <option value="Banashankari, Bangalore">Banashankari</option>
+    <option value="HSR Layout, Bangalore">HSR Layout</option>
+    <option value="RT Nagar, Bangalore">RT Nagar</option>
   </select>
+</label>
+      <label>
+        Budget
+        <select id="budget">
+          <option value="Low">Low</option>
+          <option value="Medium">Medium</option>
+          <option value="High">High</option>
+        </select>
+      </label>
+      <label>
+        Risk Tolerance
+        <select id="risk">
+          <option value="Low">Low</option>
+          <option value="Medium">Medium</option>
+          <option value="High">High</option>
+        </select>
+      </label>
+      <label>
+        Time Horizon
+        <select id="time">
+          <option value="Short-term">Short-term</option>
+          <option value="Medium-term">Medium-term</option>
+          <option value="Long-term">Long-term</option>
+        </select>
+      </label>
+      <button id="evaluateBtn">Evaluate Options</button>
+    </div>
 
-  <label>Risk Tolerance</label>
-  <select id="risk">
-    <option>Low</option>
-    <option>Medium</option>
-    <option>High</option>
-  </select>
-
-  <label>Time Horizon</label>
-  <select id="time">
-    <option>Short-term</option>
-    <option>Long-term</option>
-  </select>
-
-  <br/><br/>
-  <button onclick="evaluate()">Evaluate</button>
-
-  <pre id="output"></pre>
-
-  <script>
-    async function evaluate() {
-      const response = await fetch("http://localhost:3000/evaluate", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          budget: budget.value,
-          risk_tolerance: risk.value,
-          time_horizon: time.value
-        })
-      });
-
-      const data = await response.json();
-      document.getElementById("output").innerText =
-        JSON.stringify(data, null, 2);
-    }
-  </script>
+    <!-- Results Panel -->
+    <div class="results-panel">
+      <div id="results"></div>
+      <canvas id="radarChart"></canvas>
+    </div>
+  </div>
+  <script src="script.js"></script>
 </body>
 </html>
