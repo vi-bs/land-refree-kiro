@@ -1,0 +1,1925 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LandReferee - Smart Real Estate Investment Dashboard</title>
+  <link rel="stylesheet" href="dashboard.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Navigation Header -->
+  <nav class="navbar">
+    <div class="nav-brand">
+      <i class="fas fa-building"></i>
+      <span>LandReferee</span>
+    </div>
+    <div class="nav-subtitle">Smart Real Estate Investment Analysis</div>
+  </nav>
+
+  <!-- Main Container -->
+  <div class="dashboard-container">
+    
+    <!-- Left Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-tabs">
+        <div class="tab-item active" data-tab="welcome">
+          <i class="fas fa-home"></i>
+          <span>Welcome</span>
+        </div>
+        <div class="tab-item" data-tab="analysis">
+          <i class="fas fa-chart-radar"></i>
+          <span>Analysis</span>
+        </div>
+        <div class="tab-item" data-tab="location-facts">
+          <i class="fas fa-map-marker-alt"></i>
+          <span>Location Intel</span>
+        </div>
+        <div class="tab-item" data-tab="commercial-trends">
+          <i class="fas fa-store"></i>
+          <span>Commercial Hub</span>
+        </div>
+        <div class="tab-item" data-tab="residential-insights">
+          <i class="fas fa-house-user"></i>
+          <span>Residential Zone</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+      
+      <!-- Welcome Tab -->
+      <div class="tab-content active" id="welcome">
+        <div class="welcome-hero">
+          <div class="hero-content">
+            <h1><i class="fas fa-building"></i> LandReferee</h1>
+            <h2>Smart Real Estate Investment Analysis</h2>
+            <p>Get AI-powered trade-off analysis for your property investment decisions in Bangalore</p>
+          </div>
+        </div>
+        
+        <div class="input-form-container">
+          <div class="form-header">
+            <h3><i class="fas fa-chart-line"></i> Investment Analysis Setup</h3>
+            <p>Tell us about your investment preferences to get personalized recommendations</p>
+          </div>
+          
+          <form class="investment-form" id="investmentForm">
+            <div class="form-grid">
+              <!-- Location Selection -->
+              <div class="form-group">
+                <label><i class="fas fa-map-marker-alt"></i> Choose Location</label>
+                <div class="location-selector">
+                  <select id="locationSelect" required>
+                    <option value="">Select Bangalore Area</option>
+                    <option value="Indiranagar, Bangalore">Indiranagar - Premium Commercial Hub</option>
+                    <option value="Koramangala, Bangalore">Koramangala - Tech Startup District</option>
+                    <option value="Whitefield, Bangalore">Whitefield - IT Corridor</option>
+                    <option value="HSR Layout, Bangalore">HSR Layout - Residential Paradise</option>
+                    <option value="MG Road, Bangalore">MG Road - Business Center</option>
+                    <option value="Electronic City, Bangalore">Electronic City - Tech Hub</option>
+                    <option value="JP Nagar, Bangalore">JP Nagar - Family Area</option>
+                    <option value="Banashankari, Bangalore">Banashankari - Emerging Zone</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Budget Selection -->
+              <div class="form-group">
+                <label><i class="fas fa-rupee-sign"></i> Investment Budget</label>
+                <div class="budget-selector">
+                  <div class="radio-group">
+                    <input type="radio" id="budgetLow" name="budget" value="Low" required>
+                    <label for="budgetLow" class="radio-label">
+                      <span class="radio-title">Conservative</span>
+                      <span class="radio-desc">₹50L - ₹1.5Cr</span>
+                    </label>
+                  </div>
+                  <div class="radio-group">
+                    <input type="radio" id="budgetMedium" name="budget" value="Medium" required>
+                    <label for="budgetMedium" class="radio-label">
+                      <span class="radio-title">Moderate</span>
+                      <span class="radio-desc">₹1.5Cr - ₹3Cr</span>
+                    </label>
+                  </div>
+                  <div class="radio-group">
+                    <input type="radio" id="budgetHigh" name="budget" value="High" required>
+                    <label for="budgetHigh" class="radio-label">
+                      <span class="radio-title">Premium</span>
+                      <span class="radio-desc">₹3Cr+</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Risk Tolerance -->
+              <div class="form-group">
+                <label><i class="fas fa-shield-alt"></i> Risk Tolerance</label>
+                <div class="risk-selector">
+                  <div class="radio-group">
+                    <input type="radio" id="riskLow" name="risk" value="Low" required>
+                    <label for="riskLow" class="radio-label">
+                      <span class="radio-title">Conservative</span>
+                      <span class="radio-desc">Stability first</span>
+                    </label>
+                  </div>
+                  <div class="radio-group">
+                    <input type="radio" id="riskMedium" name="risk" value="Medium" required>
+                    <label for="riskMedium" class="radio-label">
+                      <span class="radio-title">Balanced</span>
+                      <span class="radio-desc">Moderate risk</span>
+                    </label>
+                  </div>
+                  <div class="radio-group">
+                    <input type="radio" id="riskHigh" name="risk" value="High" required>
+                    <label for="riskHigh" class="radio-label">
+                      <span class="radio-title">Aggressive</span>
+                      <span class="radio-desc">High returns</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Time Horizon -->
+              <div class="form-group">
+                <label><i class="fas fa-clock"></i> Investment Timeline</label>
+                <div class="timeline-selector">
+                  <div class="radio-group">
+                    <input type="radio" id="timeShort" name="timeline" value="Short-term" required>
+                    <label for="timeShort" class="radio-label">
+                      <span class="radio-title">Short-term</span>
+                      <span class="radio-desc">1-3 years</span>
+                    </label>
+                  </div>
+                  <div class="radio-group">
+                    <input type="radio" id="timeMedium" name="timeline" value="Medium-term" required>
+                    <label for="timeMedium" class="radio-label">
+                      <span class="radio-title">Medium-term</span>
+                      <span class="radio-desc">3-7 years</span>
+                    </label>
+                  </div>
+                  <div class="radio-group">
+                    <input type="radio" id="timeLong" name="timeline" value="Long-term" required>
+                    <label for="timeLong" class="radio-label">
+                      <span class="radio-title">Long-term</span>
+                      <span class="radio-desc">7+ years</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="analyze-button">
+                <i class="fas fa-chart-radar"></i>
+                <span>Start AI Analysis</span>
+                <div class="button-loader"></div>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Analysis Results Tab -->
+      <div class="tab-content" id="analysis">
+        <div class="analysis-header">
+          <h1><i class="fas fa-chart-radar"></i> Investment Analysis Results</h1>
+          <div class="property-summary" id="propertySummary">
+            <!-- Property details will be populated here -->
+          </div>
+        </div>
+
+        <!-- Main Analysis Dashboard -->
+        <div class="analysis-dashboard">
+          
+          <!-- Scenario Comparison Cards -->
+          <div class="scenarios-section">
+            <h2><i class="fas fa-building"></i> Development Scenarios Comparison</h2>
+            <div class="scenarios-grid">
+              
+              <!-- Residential Housing -->
+              <div class="scenario-card residential-card">
+                <div class="scenario-header">
+                  <div class="scenario-icon">
+                    <i class="fas fa-home"></i>
+                  </div>
+                  <div class="scenario-title">
+                    <h3>Residential Housing</h3>
+                    <p>Apartment complex development</p>
+                  </div>
+                </div>
+                
+                <div class="scenario-speedometer">
+                  <canvas id="residentialSpeedometer" width="200" height="120"></canvas>
+                  <div class="speedometer-label">Overall Score</div>
+                </div>
+                
+                <div class="scenario-metrics" id="residentialMetrics">
+                  <!-- Metrics will be populated -->
+                </div>
+                
+                <div class="scenario-highlights" id="residentialHighlights">
+                  <!-- Highlights will be populated -->
+                </div>
+              </div>
+
+              <!-- Commercial Retail -->
+              <div class="scenario-card commercial-card">
+                <div class="scenario-header">
+                  <div class="scenario-icon">
+                    <i class="fas fa-store"></i>
+                  </div>
+                  <div class="scenario-title">
+                    <h3>Commercial Retail</h3>
+                    <p>Shopping complex development</p>
+                  </div>
+                </div>
+                
+                <div class="scenario-speedometer">
+                  <canvas id="commercialSpeedometer" width="200" height="120"></canvas>
+                  <div class="speedometer-label">Overall Score</div>
+                </div>
+                
+                <div class="scenario-metrics" id="commercialMetrics">
+                  <!-- Metrics will be populated -->
+                </div>
+                
+                <div class="scenario-highlights" id="commercialHighlights">
+                  <!-- Highlights will be populated -->
+                </div>
+              </div>
+
+              <!-- Cafe / Hotel -->
+              <div class="scenario-card hospitality-card">
+                <div class="scenario-header">
+                  <div class="scenario-icon">
+                    <i class="fas fa-coffee"></i>
+                  </div>
+                  <div class="scenario-title">
+                    <h3>Cafe / Hotel</h3>
+                    <p>Hospitality business development</p>
+                  </div>
+                </div>
+                
+                <div class="scenario-speedometer">
+                  <canvas id="hospitalitySpeedometer" width="200" height="120"></canvas>
+                  <div class="speedometer-label">Overall Score</div>
+                </div>
+                
+                <div class="scenario-metrics" id="hospitalityMetrics">
+                  <!-- Metrics will be populated -->
+                </div>
+                
+                <div class="scenario-highlights" id="hospitalityHighlights">
+                  <!-- Highlights will be populated -->
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Radar Chart Comparison -->
+          <div class="radar-section">
+            <h2><i class="fas fa-chart-radar"></i> Multi-Metric Comparison</h2>
+            <div class="radar-container">
+              <canvas id="comparisonRadar"></canvas>
+            </div>
+            <div class="radar-legend">
+              <div class="legend-item residential">
+                <span class="legend-color"></span>
+                <span>Residential Housing</span>
+              </div>
+              <div class="legend-item commercial">
+                <span class="legend-color"></span>
+                <span>Commercial Retail</span>
+              </div>
+              <div class="legend-item hospitality">
+                <span class="legend-color"></span>
+                <span>Cafe / Hotel</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- AI Referee Analysis -->
+          <div class="referee-section">
+            <h2><i class="fas fa-robot"></i> AI Referee Analysis</h2>
+            <div class="referee-content">
+              <div class="referee-guidance" id="refereeGuidance">
+                <!-- AI guidance will be populated -->
+              </div>
+              
+              <div class="decision-flowchart">
+                <h3><i class="fas fa-sitemap"></i> Decision Flow</h3>
+                <div class="flowchart-container" id="decisionFlowchart">
+                  <!-- Flowchart will be populated -->
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Detailed Trade-offs -->
+          <div class="tradeoffs-section">
+            <h2><i class="fas fa-balance-scale"></i> Detailed Trade-off Analysis</h2>
+            <div class="tradeoffs-grid" id="tradeoffsGrid">
+              <!-- Trade-offs will be populated -->
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Location Facts Tab -->
+      <div class="tab-content" id="location-facts">
+        <div class="location-header">
+          <h1><i class="fas fa-map-marker-alt"></i> Location Intelligence Hub</h1>
+          <p>Comprehensive market insights and location-specific data for informed investment decisions</p>
+        </div>
+        
+        <div class="location-selector-tabs">
+          <div class="location-tab active" data-location="indiranagar">
+            <i class="fas fa-city"></i>
+            <span>Indiranagar</span>
+            <div class="tab-indicator"></div>
+          </div>
+          <div class="location-tab" data-location="koramangala">
+            <i class="fas fa-laptop-code"></i>
+            <span>Koramangala</span>
+            <div class="tab-indicator"></div>
+          </div>
+          <div class="location-tab" data-location="whitefield">
+            <i class="fas fa-building"></i>
+            <span>Whitefield</span>
+            <div class="tab-indicator"></div>
+          </div>
+          <div class="location-tab" data-location="hsr">
+            <i class="fas fa-home"></i>
+            <span>HSR Layout</span>
+            <div class="tab-indicator"></div>
+          </div>
+          <div class="location-tab" data-location="mgroad">
+            <i class="fas fa-briefcase"></i>
+            <span>MG Road</span>
+            <div class="tab-indicator"></div>
+          </div>
+        </div>
+
+        <div class="location-content" id="locationContent">
+          <!-- Dynamic location content will be populated here -->
+        </div>
+      </div>
+
+      <!-- Commercial Trends Tab -->
+      <div class="tab-content" id="commercial-trends">
+        <div class="commercial-header">
+          <h1><i class="fas fa-store"></i> Commercial Hub Analysis</h1>
+          <p>Discover thriving business districts and commercial investment opportunities across Bangalore</p>
+        </div>
+
+        <div class="commercial-dashboard">
+          <!-- Market Overview KPIs -->
+          <div class="kpi-section">
+            <h2><i class="fas fa-chart-line"></i> Market Performance Dashboard</h2>
+            <div class="kpi-grid">
+              <div class="kpi-card revenue">
+                <div class="kpi-icon">
+                  <i class="fas fa-rupee-sign"></i>
+                </div>
+                <div class="kpi-content">
+                  <div class="kpi-value">₹185/sqft</div>
+                  <div class="kpi-label">Avg Commercial Rent</div>
+                  <div class="kpi-trend positive">
+                    <i class="fas fa-arrow-up"></i>
+                    <span>+12% YoY</span>
+                  </div>
+                </div>
+                <div class="kpi-chart">
+                  <canvas id="rentTrendChart" width="100" height="50"></canvas>
+                </div>
+              </div>
+
+              <div class="kpi-card occupancy">
+                <div class="kpi-icon">
+                  <i class="fas fa-percentage"></i>
+                </div>
+                <div class="kpi-content">
+                  <div class="kpi-value">82%</div>
+                  <div class="kpi-label">Occupancy Rate</div>
+                  <div class="kpi-trend positive">
+                    <i class="fas fa-arrow-up"></i>
+                    <span>+5% from Q3</span>
+                  </div>
+                </div>
+                <div class="kpi-chart">
+                  <canvas id="occupancyChart" width="100" height="50"></canvas>
+                </div>
+              </div>
+
+              <div class="kpi-card supply">
+                <div class="kpi-icon">
+                  <i class="fas fa-building"></i>
+                </div>
+                <div class="kpi-content">
+                  <div class="kpi-value">2.8M</div>
+                  <div class="kpi-label">New Supply (sqft)</div>
+                  <div class="kpi-trend neutral">
+                    <i class="fas fa-minus"></i>
+                    <span>Steady</span>
+                  </div>
+                </div>
+                <div class="kpi-chart">
+                  <canvas id="supplyChart" width="100" height="50"></canvas>
+                </div>
+              </div>
+
+              <div class="kpi-card businesses">
+                <div class="kpi-icon">
+                  <i class="fas fa-handshake"></i>
+                </div>
+                <div class="kpi-content">
+                  <div class="kpi-value">520+</div>
+                  <div class="kpi-label">New Businesses</div>
+                  <div class="kpi-trend positive">
+                    <i class="fas fa-arrow-up"></i>
+                    <span>+28% growth</span>
+                  </div>
+                </div>
+                <div class="kpi-chart">
+                  <canvas id="businessChart" width="100" height="50"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Business District Comparison -->
+          <div class="districts-comparison">
+            <h2><i class="fas fa-city"></i> Business District Performance Matrix</h2>
+            <div class="comparison-table">
+              <div class="table-header">
+                <div class="header-cell">District</div>
+                <div class="header-cell">Rent Range</div>
+                <div class="header-cell">Footfall</div>
+                <div class="header-cell">Occupancy</div>
+                <div class="header-cell">Growth Rate</div>
+                <div class="header-cell">Investment Score</div>
+              </div>
+              
+              <div class="table-row tier1">
+                <div class="district-cell">
+                  <div class="district-name">MG Road - Brigade</div>
+                  <div class="district-tier">Tier 1 CBD</div>
+                </div>
+                <div class="data-cell">₹280-420/sqft</div>
+                <div class="data-cell">
+                  <div class="footfall-indicator high">55K+ daily</div>
+                </div>
+                <div class="data-cell">
+                  <div class="occupancy-bar">
+                    <div class="occupancy-fill" style="width: 92%"></div>
+                    <span>92%</span>
+                  </div>
+                </div>
+                <div class="data-cell">
+                  <div class="growth-indicator positive">+15%</div>
+                </div>
+                <div class="data-cell">
+                  <div class="score-badge excellent">9.2/10</div>
+                </div>
+              </div>
+
+              <div class="table-row tier1">
+                <div class="district-cell">
+                  <div class="district-name">Koramangala</div>
+                  <div class="district-tier">Tech Hub</div>
+                </div>
+                <div class="data-cell">₹200-320/sqft</div>
+                <div class="data-cell">
+                  <div class="footfall-indicator high">42K+ daily</div>
+                </div>
+                <div class="data-cell">
+                  <div class="occupancy-bar">
+                    <div class="occupancy-fill" style="width: 88%"></div>
+                    <span>88%</span>
+                  </div>
+                </div>
+                <div class="data-cell">
+                  <div class="growth-indicator positive">+22%</div>
+                </div>
+                <div class="data-cell">
+                  <div class="score-badge excellent">8.8/10</div>
+                </div>
+              </div>
+
+              <div class="table-row tier2">
+                <div class="district-cell">
+                  <div class="district-name">Indiranagar</div>
+                  <div class="district-tier">Premium Retail</div>
+                </div>
+                <div class="data-cell">₹180-280/sqft</div>
+                <div class="data-cell">
+                  <div class="footfall-indicator medium">35K+ daily</div>
+                </div>
+                <div class="data-cell">
+                  <div class="occupancy-bar">
+                    <div class="occupancy-fill" style="width: 85%"></div>
+                    <span>85%</span>
+                  </div>
+                </div>
+                <div class="data-cell">
+                  <div class="growth-indicator positive">+18%</div>
+                </div>
+                <div class="data-cell">
+                  <div class="score-badge good">8.5/10</div>
+                </div>
+              </div>
+
+              <div class="table-row tier2">
+                <div class="district-cell">
+                  <div class="district-name">Whitefield</div>
+                  <div class="district-tier">Emerging IT</div>
+                </div>
+                <div class="data-cell">₹140-220/sqft</div>
+                <div class="data-cell">
+                  <div class="footfall-indicator medium">28K+ daily</div>
+                </div>
+                <div class="data-cell">
+                  <div class="occupancy-bar">
+                    <div class="occupancy-fill" style="width: 78%"></div>
+                    <span>78%</span>
+                  </div>
+                </div>
+                <div class="data-cell">
+                  <div class="growth-indicator positive">+25%</div>
+                </div>
+                <div class="data-cell">
+                  <div class="score-badge good">7.8/10</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sector Performance Dashboard -->
+          <div class="sector-performance">
+            <h2><i class="fas fa-chart-pie"></i> Sector Performance Analytics</h2>
+            <div class="sector-dashboard">
+              
+              <div class="sector-overview">
+                <div class="sector-chart-container">
+                  <canvas id="sectorPieChart" width="300" height="300"></canvas>
+                  <div class="chart-legend">
+                    <div class="legend-item">
+                      <span class="legend-color retail"></span>
+                      <span>Retail (35%)</span>
+                    </div>
+                    <div class="legend-item">
+                      <span class="legend-color fnb"></span>
+                      <span>F&B (28%)</span>
+                    </div>
+                    <div class="legend-item">
+                      <span class="legend-color coworking"></span>
+                      <span>Co-working (22%)</span>
+                    </div>
+                    <div class="legend-item">
+                      <span class="legend-color services"></span>
+                      <span>Services (15%)</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="sector-metrics">
+                <div class="metric-card retail-card">
+                  <div class="metric-header">
+                    <i class="fas fa-shopping-bag"></i>
+                    <h3>Retail Sector</h3>
+                  </div>
+                  <div class="metric-stats">
+                    <div class="stat-item">
+                      <span class="stat-label">Growth Rate</span>
+                      <span class="stat-value positive">+8.5%</span>
+                    </div>
+                    <div class="stat-item">
+                      <span class="stat-label">Avg Rent</span>
+                      <span class="stat-value">₹240/sqft</span>
+                    </div>
+                    <div class="stat-item">
+                      <span class="stat-label">Vacancy</span>
+                      <span class="stat-value">16%</span>
+                    </div>
+                  </div>
+                  <div class="trend-chart">
+                    <canvas id="retailTrendChart" width="200" height="100"></canvas>
+                  </div>
+                </div>
+
+                <div class="metric-card fnb-card">
+                  <div class="metric-header">
+                    <i class="fas fa-utensils"></i>
+                    <h3>F&B Sector</h3>
+                  </div>
+                  <div class="metric-stats">
+                    <div class="stat-item">
+                      <span class="stat-label">Growth Rate</span>
+                      <span class="stat-value positive">+18%</span>
+                    </div>
+                    <div class="stat-item">
+                      <span class="stat-label">Avg Rent</span>
+                      <span class="stat-value">₹320/sqft</span>
+                    </div>
+                    <div class="stat-item">
+                      <span class="stat-label">Vacancy</span>
+                      <span class="stat-value">8%</span>
+                    </div>
+                  </div>
+                  <div class="trend-chart">
+                    <canvas id="fnbTrendChart" width="200" height="100"></canvas>
+                  </div>
+                </div>
+
+                <div class="metric-card coworking-card">
+                  <div class="metric-header">
+                    <i class="fas fa-laptop"></i>
+                    <h3>Co-working</h3>
+                  </div>
+                  <div class="metric-stats">
+                    <div class="stat-item">
+                      <span class="stat-label">Growth Rate</span>
+                      <span class="stat-value positive">+45%</span>
+                    </div>
+                    <div class="stat-item">
+                      <span class="stat-label">Avg Rent</span>
+                      <span class="stat-value">₹380/sqft</span>
+                    </div>
+                    <div class="stat-item">
+                      <span class="stat-label">Vacancy</span>
+                      <span class="stat-value">5%</span>
+                    </div>
+                  </div>
+                  <div class="trend-chart">
+                    <canvas id="coworkingTrendChart" width="200" height="100"></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Investment Opportunity Flowchart -->
+          <div class="investment-flowchart">
+            <h2><i class="fas fa-sitemap"></i> Commercial Investment Decision Flow</h2>
+            <div class="flowchart-container">
+              <div class="flow-start">
+                <div class="flow-node start">
+                  <i class="fas fa-play"></i>
+                  <span>Commercial Investment</span>
+                </div>
+              </div>
+
+              <div class="flow-branches">
+                <div class="flow-path">
+                  <div class="flow-node decision">
+                    <i class="fas fa-question-circle"></i>
+                    <span>Budget Range?</span>
+                  </div>
+                  
+                  <div class="flow-options">
+                    <div class="flow-option">
+                      <div class="flow-connector">₹50L-1Cr</div>
+                      <div class="flow-node recommendation">
+                        <i class="fas fa-coffee"></i>
+                        <span>Cloud Kitchen</span>
+                        <small>ROI: 25-30%</small>
+                      </div>
+                    </div>
+                    
+                    <div class="flow-option">
+                      <div class="flow-connector">₹1-3Cr</div>
+                      <div class="flow-node recommendation">
+                        <i class="fas fa-store"></i>
+                        <span>Retail Space</span>
+                        <small>ROI: 18-25%</small>
+                      </div>
+                    </div>
+                    
+                    <div class="flow-option">
+                      <div class="flow-connector">₹3Cr+</div>
+                      <div class="flow-node recommendation">
+                        <i class="fas fa-building"></i>
+                        <span>Commercial Complex</span>
+                        <small>ROI: 15-22%</small>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="flow-path">
+                  <div class="flow-node decision">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Location Priority?</span>
+                  </div>
+                  
+                  <div class="flow-options">
+                    <div class="flow-option">
+                      <div class="flow-connector">High Footfall</div>
+                      <div class="flow-node recommendation">
+                        <i class="fas fa-utensils"></i>
+                        <span>F&B Business</span>
+                        <small>MG Road, Koramangala</small>
+                      </div>
+                    </div>
+                    
+                    <div class="flow-option">
+                      <div class="flow-connector">Tech Ecosystem</div>
+                      <div class="flow-node recommendation">
+                        <i class="fas fa-laptop"></i>
+                        <span>Co-working Space</span>
+                        <small>Koramangala, HSR</small>
+                      </div>
+                    </div>
+                    
+                    <div class="flow-option">
+                      <div class="flow-connector">Value Investment</div>
+                      <div class="flow-node recommendation">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Emerging Areas</span>
+                        <small>Whitefield, Electronic City</small>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Success Stories Dashboard -->
+          <div class="success-stories-dashboard">
+            <h2><i class="fas fa-trophy"></i> Commercial Success Stories</h2>
+            
+            <div class="success-overview">
+              <div class="success-stats-grid">
+                <div class="success-stat-card">
+                  <div class="stat-icon">
+                    <i class="fas fa-chart-line"></i>
+                  </div>
+                  <div class="stat-content">
+                    <div class="stat-number">2000%+</div>
+                    <div class="stat-label">Average ROI</div>
+                    <div class="stat-desc">Top performing businesses</div>
+                  </div>
+                </div>
+                
+                <div class="success-stat-card">
+                  <div class="stat-icon">
+                    <i class="fas fa-building"></i>
+                  </div>
+                  <div class="stat-content">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">Success Stories</div>
+                    <div class="stat-desc">Documented cases</div>
+                  </div>
+                </div>
+                
+                <div class="success-stat-card">
+                  <div class="stat-icon">
+                    <i class="fas fa-clock"></i>
+                  </div>
+                  <div class="stat-content">
+                    <div class="stat-number">3.2 years</div>
+                    <div class="stat-label">Avg. Break-even</div>
+                    <div class="stat-desc">Time to profitability</div>
+                  </div>
+                </div>
+                
+                <div class="success-stat-card">
+                  <div class="stat-icon">
+                    <i class="fas fa-rupee-sign"></i>
+                  </div>
+                  <div class="stat-content">
+                    <div class="stat-number">₹850Cr</div>
+                    <div class="stat-label">Total Value</div>
+                    <div class="stat-desc">Created in 5 years</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="success-analysis-grid">
+              
+              <!-- Success by Sector Chart -->
+              <div class="success-chart-section">
+                <h3><i class="fas fa-chart-pie"></i> Success Stories by Sector</h3>
+                <div class="chart-container">
+                  <canvas id="successBySectorChart" width="300" height="300"></canvas>
+                </div>
+                <div class="sector-success-legend">
+                  <div class="legend-item">
+                    <span class="legend-dot fnb"></span>
+                    <span>F&B (42%)</span>
+                    <small>210 success stories</small>
+                  </div>
+                  <div class="legend-item">
+                    <span class="legend-dot tech"></span>
+                    <span>Tech/Co-working (28%)</span>
+                    <small>140 success stories</small>
+                  </div>
+                  <div class="legend-item">
+                    <span class="legend-dot retail"></span>
+                    <span>Retail (20%)</span>
+                    <small>100 success stories</small>
+                  </div>
+                  <div class="legend-item">
+                    <span class="legend-dot services"></span>
+                    <span>Services (10%)</span>
+                    <small>50 success stories</small>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Investment Range Analysis -->
+              <div class="investment-range-section">
+                <h3><i class="fas fa-coins"></i> Success by Investment Range</h3>
+                <div class="chart-container">
+                  <canvas id="investmentRangeChart" width="300" height="300"></canvas>
+                </div>
+                <div class="investment-insights">
+                  <div class="insight-item">
+                    <div class="insight-icon">
+                      <i class="fas fa-seedling"></i>
+                    </div>
+                    <div class="insight-content">
+                      <h4>₹25L - ₹1Cr</h4>
+                      <p>Small businesses with highest success rate (78%)</p>
+                      <span class="insight-metric">Avg ROI: 45%</span>
+                    </div>
+                  </div>
+                  
+                  <div class="insight-item">
+                    <div class="insight-icon">
+                      <i class="fas fa-rocket"></i>
+                    </div>
+                    <div class="insight-content">
+                      <h4>₹1Cr - ₹5Cr</h4>
+                      <p>Medium enterprises with strong growth</p>
+                      <span class="insight-metric">Avg ROI: 65%</span>
+                    </div>
+                  </div>
+                  
+                  <div class="insight-item">
+                    <div class="insight-icon">
+                      <i class="fas fa-crown"></i>
+                    </div>
+                    <div class="insight-content">
+                      <h4>₹5Cr+</h4>
+                      <p>Large format stores and complexes</p>
+                      <span class="insight-metric">Avg ROI: 85%</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Featured Success Cases -->
+            <div class="featured-success-cases">
+              <h3><i class="fas fa-star"></i> Featured Success Cases</h3>
+              <div class="success-cases-grid">
+                
+                <div class="success-case-card fnb">
+                  <div class="case-header">
+                    <div class="case-icon">
+                      <i class="fas fa-coffee"></i>
+                    </div>
+                    <div class="case-info">
+                      <h4>Third Wave Coffee</h4>
+                      <span class="case-location">Koramangala</span>
+                    </div>
+                    <div class="case-year">2018</div>
+                  </div>
+                  <div class="case-metrics">
+                    <div class="case-metric">
+                      <span class="metric-label">Initial Investment</span>
+                      <span class="metric-value">₹25L</span>
+                    </div>
+                    <div class="case-metric">
+                      <span class="metric-label">Current Valuation</span>
+                      <span class="metric-value">₹500Cr+</span>
+                    </div>
+                    <div class="case-metric">
+                      <span class="metric-label">ROI</span>
+                      <span class="metric-value success">2000%+</span>
+                    </div>
+                  </div>
+                  <div class="case-expansion">
+                    <span class="expansion-badge">100+ outlets nationwide</span>
+                  </div>
+                </div>
+
+                <div class="success-case-card tech">
+                  <div class="case-header">
+                    <div class="case-icon">
+                      <i class="fas fa-laptop"></i>
+                    </div>
+                    <div class="case-info">
+                      <h4>WeWork Prestige</h4>
+                      <span class="case-location">Central Bangalore</span>
+                    </div>
+                    <div class="case-year">2020</div>
+                  </div>
+                  <div class="case-metrics">
+                    <div class="case-metric">
+                      <span class="metric-label">Space Size</span>
+                      <span class="metric-value">50K sqft</span>
+                    </div>
+                    <div class="case-metric">
+                      <span class="metric-label">Occupancy</span>
+                      <span class="metric-value">95%</span>
+                    </div>
+                    <div class="case-metric">
+                      <span class="metric-label">Revenue/sqft</span>
+                      <span class="metric-value success">₹450/month</span>
+                    </div>
+                  </div>
+                  <div class="case-expansion">
+                    <span class="expansion-badge">Premium co-working leader</span>
+                  </div>
+                </div>
+
+                <div class="success-case-card retail">
+                  <div class="case-header">
+                    <div class="case-icon">
+                      <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <div class="case-info">
+                      <h4>Phoenix Marketcity</h4>
+                      <span class="case-location">Whitefield</span>
+                    </div>
+                    <div class="case-year">2022</div>
+                  </div>
+                  <div class="case-metrics">
+                    <div class="case-metric">
+                      <span class="metric-label">Investment</span>
+                      <span class="metric-value">₹800Cr</span>
+                    </div>
+                    <div class="case-metric">
+                      <span class="metric-label">Annual Revenue</span>
+                      <span class="metric-value">₹200Cr+</span>
+                    </div>
+                    <div class="case-metric">
+                      <span class="metric-label">Footfall</span>
+                      <span class="metric-value success">2M+ annually</span>
+                    </div>
+                  </div>
+                  <div class="case-expansion">
+                    <span class="expansion-badge">300+ brand partners</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Residential Insights Tab -->
+      <div class="tab-content" id="residential-insights">
+        <div class="residential-header">
+          <h1><i class="fas fa-house-user"></i> Residential Investment Intelligence</h1>
+          <p>Comprehensive analysis of family-friendly neighborhoods and residential investment opportunities</p>
+        </div>
+
+        <div class="residential-dashboard">
+          
+          <!-- Market Performance KPIs -->
+          <div class="residential-kpi-section">
+            <h2><i class="fas fa-chart-line"></i> Residential Market Dashboard</h2>
+            <div class="residential-kpi-grid">
+              <div class="res-kpi-card price">
+                <div class="res-kpi-icon">
+                  <i class="fas fa-home"></i>
+                </div>
+                <div class="res-kpi-content">
+                  <div class="res-kpi-value">₹9,200/sqft</div>
+                  <div class="res-kpi-label">Average Property Price</div>
+                  <div class="res-kpi-trend positive">
+                    <i class="fas fa-arrow-up"></i>
+                    <span>+11% YoY</span>
+                  </div>
+                </div>
+                <div class="res-kpi-chart">
+                  <canvas id="priceGrowthChart" width="120" height="60"></canvas>
+                </div>
+              </div>
+
+              <div class="res-kpi-card yield">
+                <div class="res-kpi-icon">
+                  <i class="fas fa-percentage"></i>
+                </div>
+                <div class="res-kpi-content">
+                  <div class="res-kpi-value">4.5%</div>
+                  <div class="res-kpi-label">Average Rental Yield</div>
+                  <div class="res-kpi-trend stable">
+                    <i class="fas fa-minus"></i>
+                    <span>Stable</span>
+                  </div>
+                </div>
+                <div class="res-kpi-chart">
+                  <canvas id="yieldChart" width="120" height="60"></canvas>
+                </div>
+              </div>
+
+              <div class="res-kpi-card inventory">
+                <div class="res-kpi-icon">
+                  <i class="fas fa-building"></i>
+                </div>
+                <div class="res-kpi-content">
+                  <div class="res-kpi-value">18,500</div>
+                  <div class="res-kpi-label">New Units (2024)</div>
+                  <div class="res-kpi-trend positive">
+                    <i class="fas fa-arrow-up"></i>
+                    <span>+22% supply</span>
+                  </div>
+                </div>
+                <div class="res-kpi-chart">
+                  <canvas id="supplyGrowthChart" width="120" height="60"></canvas>
+                </div>
+              </div>
+
+              <div class="res-kpi-card absorption">
+                <div class="res-kpi-icon">
+                  <i class="fas fa-clock"></i>
+                </div>
+                <div class="res-kpi-content">
+                  <div class="res-kpi-value">165 days</div>
+                  <div class="res-kpi-label">Average Sale Time</div>
+                  <div class="res-kpi-trend positive">
+                    <i class="fas fa-arrow-down"></i>
+                    <span>-18 days faster</span>
+                  </div>
+                </div>
+                <div class="res-kpi-chart">
+                  <canvas id="absorptionChart" width="120" height="60"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Neighborhood Comparison Matrix -->
+          <div class="neighborhood-matrix">
+            <h2><i class="fas fa-map"></i> Neighborhood Investment Matrix</h2>
+            <div class="matrix-container">
+              <div class="matrix-header">
+                <div class="matrix-cell header">Area</div>
+                <div class="matrix-cell header">Price Range</div>
+                <div class="matrix-cell header">Rental Yield</div>
+                <div class="matrix-cell header">Appreciation</div>
+                <div class="matrix-cell header">Family Score</div>
+                <div class="matrix-cell header">Investment Grade</div>
+              </div>
+
+              <div class="matrix-row premium-tier">
+                <div class="matrix-cell area-cell">
+                  <div class="area-info">
+                    <div class="area-name">Indiranagar</div>
+                    <div class="area-type">Premium Central</div>
+                  </div>
+                </div>
+                <div class="matrix-cell">₹12K-18K/sqft</div>
+                <div class="matrix-cell">
+                  <div class="yield-indicator medium">3.5-4%</div>
+                </div>
+                <div class="matrix-cell">
+                  <div class="appreciation-bar">
+                    <div class="appreciation-fill" style="width: 75%"></div>
+                    <span>8-12%</span>
+                  </div>
+                </div>
+                <div class="matrix-cell">
+                  <div class="family-score excellent">9.2/10</div>
+                </div>
+                <div class="matrix-cell">
+                  <div class="investment-grade a-plus">A+</div>
+                </div>
+              </div>
+
+              <div class="matrix-row family-tier">
+                <div class="matrix-cell area-cell">
+                  <div class="area-info">
+                    <div class="area-name">HSR Layout</div>
+                    <div class="area-type">Family Paradise</div>
+                  </div>
+                </div>
+                <div class="matrix-cell">₹8K-12K/sqft</div>
+                <div class="matrix-cell">
+                  <div class="yield-indicator high">4.5-5.5%</div>
+                </div>
+                <div class="matrix-cell">
+                  <div class="appreciation-bar">
+                    <div class="appreciation-fill" style="width: 85%"></div>
+                    <span>10-15%</span>
+                  </div>
+                </div>
+                <div class="matrix-cell">
+                  <div class="family-score excellent">9.8/10</div>
+                </div>
+                <div class="matrix-cell">
+                  <div class="investment-grade a">A</div>
+                </div>
+              </div>
+
+              <div class="matrix-row growth-tier">
+                <div class="matrix-cell area-cell">
+                  <div class="area-info">
+                    <div class="area-name">Sarjapur Road</div>
+                    <div class="area-type">High Growth</div>
+                  </div>
+                </div>
+                <div class="matrix-cell">₹6K-9K/sqft</div>
+                <div class="matrix-cell">
+                  <div class="yield-indicator high">5-6%</div>
+                </div>
+                <div class="matrix-cell">
+                  <div class="appreciation-bar">
+                    <div class="appreciation-fill" style="width: 95%"></div>
+                    <span>15-20%</span>
+                  </div>
+                </div>
+                <div class="matrix-cell">
+                  <div class="family-score good">7.5/10</div>
+                </div>
+                <div class="matrix-cell">
+                  <div class="investment-grade b-plus">B+</div>
+                </div>
+              </div>
+
+              <div class="matrix-row established-tier">
+                <div class="matrix-cell area-cell">
+                  <div class="area-info">
+                    <div class="area-name">JP Nagar</div>
+                    <div class="area-type">Established</div>
+                  </div>
+                </div>
+                <div class="matrix-cell">₹7K-10K/sqft</div>
+                <div class="matrix-cell">
+                  <div class="yield-indicator medium">3.5-4.5%</div>
+                </div>
+                <div class="matrix-cell">
+                  <div class="appreciation-bar">
+                    <div class="appreciation-fill" style="width: 65%"></div>
+                    <span>6-10%</span>
+                  </div>
+                </div>
+                <div class="matrix-cell">
+                  <div class="family-score excellent">9.0/10</div>
+                </div>
+                <div class="matrix-cell">
+                  <div class="investment-grade b">B</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Investment Decision Flowchart -->
+          <div class="residential-flowchart">
+            <h2><i class="fas fa-sitemap"></i> Residential Investment Decision Tree</h2>
+            <div class="flowchart-wrapper">
+              
+              <div class="flow-start-node">
+                <div class="flow-node primary">
+                  <i class="fas fa-home"></i>
+                  <span>Residential Investment</span>
+                </div>
+              </div>
+
+              <div class="flow-decision-layer">
+                <div class="flow-decision-node">
+                  <div class="flow-node decision">
+                    <i class="fas fa-question-circle"></i>
+                    <span>Investment Goal?</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="flow-branches-container">
+                
+                <!-- Rental Income Branch -->
+                <div class="flow-branch rental-branch">
+                  <div class="flow-connector">
+                    <span class="connector-label">Rental Income</span>
+                  </div>
+                  <div class="flow-sub-decision">
+                    <div class="flow-node sub-decision">
+                      <i class="fas fa-coins"></i>
+                      <span>Target Yield?</span>
+                    </div>
+                  </div>
+                  <div class="flow-options">
+                    <div class="flow-option">
+                      <div class="option-connector">4-5%</div>
+                      <div class="flow-result premium">
+                        <i class="fas fa-star"></i>
+                        <div class="result-content">
+                          <h4>Premium Areas</h4>
+                          <p>Indiranagar, Koramangala</p>
+                          <small>Stable tenants, lower vacancy</small>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="flow-option">
+                      <div class="option-connector">5-6%</div>
+                      <div class="flow-result high-yield">
+                        <i class="fas fa-chart-line"></i>
+                        <div class="result-content">
+                          <h4>High Yield Areas</h4>
+                          <p>HSR, Sarjapur Road</p>
+                          <small>Growing demand, good returns</small>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Capital Appreciation Branch -->
+                <div class="flow-branch appreciation-branch">
+                  <div class="flow-connector">
+                    <span class="connector-label">Capital Growth</span>
+                  </div>
+                  <div class="flow-sub-decision">
+                    <div class="flow-node sub-decision">
+                      <i class="fas fa-chart-bar"></i>
+                      <span>Risk Appetite?</span>
+                    </div>
+                  </div>
+                  <div class="flow-options">
+                    <div class="flow-option">
+                      <div class="option-connector">Conservative</div>
+                      <div class="flow-result stable">
+                        <i class="fas fa-shield-alt"></i>
+                        <div class="result-content">
+                          <h4>Stable Growth</h4>
+                          <p>JP Nagar, Jayanagar</p>
+                          <small>8-12% appreciation</small>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="flow-option">
+                      <div class="option-connector">Aggressive</div>
+                      <div class="flow-result growth">
+                        <i class="fas fa-rocket"></i>
+                        <div class="result-content">
+                          <h4>High Growth</h4>
+                          <p>Sarjapur, Whitefield</p>
+                          <small>15-25% appreciation</small>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Family Living Branch -->
+                <div class="flow-branch family-branch">
+                  <div class="flow-connector">
+                    <span class="connector-label">Family Living</span>
+                  </div>
+                  <div class="flow-sub-decision">
+                    <div class="flow-node sub-decision">
+                      <i class="fas fa-users"></i>
+                      <span>Priority?</span>
+                    </div>
+                  </div>
+                  <div class="flow-options">
+                    <div class="flow-option">
+                      <div class="option-connector">Schools</div>
+                      <div class="flow-result education">
+                        <i class="fas fa-graduation-cap"></i>
+                        <div class="result-content">
+                          <h4>Education Hubs</h4>
+                          <p>HSR, Koramangala</p>
+                          <small>Top schools nearby</small>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="flow-option">
+                      <div class="option-connector">Connectivity</div>
+                      <div class="flow-result connected">
+                        <i class="fas fa-subway"></i>
+                        <div class="result-content">
+                          <h4>Metro Connected</h4>
+                          <p>Indiranagar, MG Road</p>
+                          <small>Easy commute access</small>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Amenities Impact Analysis -->
+          <div class="amenities-analysis">
+            <h2><i class="fas fa-map-marked-alt"></i> Amenities Impact on Property Values</h2>
+            <div class="amenities-dashboard">
+              
+              <div class="amenities-chart-section">
+                <div class="chart-container">
+                  <h3>Property Premium by Amenity Proximity</h3>
+                  <canvas id="amenitiesImpactChart" width="400" height="300"></canvas>
+                </div>
+              </div>
+
+              <div class="amenities-breakdown">
+                <div class="amenity-card schools">
+                  <div class="amenity-header">
+                    <i class="fas fa-school"></i>
+                    <h3>Schools & Education</h3>
+                  </div>
+                  <div class="amenity-stats">
+                    <div class="stat-item">
+                      <span class="stat-label">Premium for top schools (500m)</span>
+                      <span class="stat-value">+25%</span>
+                    </div>
+                    <div class="stat-item">
+                      <span class="stat-label">Rental demand increase</span>
+                      <span class="stat-value">+40%</span>
+                    </div>
+                    <div class="stat-item">
+                      <span class="stat-label">Resale advantage</span>
+                      <span class="stat-value">+30%</span>
+                    </div>
+                  </div>
+                  <div class="top-areas">
+                    <h4>Top Education Areas</h4>
+                    <div class="area-tags">
+                      <span class="area-tag">HSR Layout</span>
+                      <span class="area-tag">Koramangala</span>
+                      <span class="area-tag">Indiranagar</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="amenity-card healthcare">
+                  <div class="amenity-header">
+                    <i class="fas fa-hospital"></i>
+                    <h3>Healthcare Facilities</h3>
+                  </div>
+                  <div class="amenity-stats">
+                    <div class="stat-item">
+                      <span class="stat-label">Premium for hospitals (1km)</span>
+                      <span class="stat-value">+15%</span>
+                    </div>
+                    <div class="stat-item">
+                      <span class="stat-label">Senior citizen preference</span>
+                      <span class="stat-value">+50%</span>
+                    </div>
+                    <div class="stat-item">
+                      <span class="stat-label">Insurance benefits</span>
+                      <span class="stat-value">+10%</span>
+                    </div>
+                  </div>
+                  <div class="top-areas">
+                    <h4>Healthcare Corridors</h4>
+                    <div class="area-tags">
+                      <span class="area-tag">Bannerghatta Road</span>
+                      <span class="area-tag">Hosur Road</span>
+                      <span class="area-tag">Richmond Road</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="amenity-card transport">
+                  <div class="amenity-header">
+                    <i class="fas fa-subway"></i>
+                    <h3>Metro Connectivity</h3>
+                  </div>
+                  <div class="amenity-stats">
+                    <div class="stat-item">
+                      <span class="stat-label">Metro proximity premium</span>
+                      <span class="stat-value">+35%</span>
+                    </div>
+                    <div class="stat-item">
+                      <span class="stat-label">Rental yield boost</span>
+                      <span class="stat-value">+1.5%</span>
+                    </div>
+                    <div class="stat-item">
+                      <span class="stat-label">Liquidity improvement</span>
+                      <span class="stat-value">+45%</span>
+                    </div>
+                  </div>
+                  <div class="top-areas">
+                    <h4>Metro Connected Areas</h4>
+                    <div class="area-tags">
+                      <span class="area-tag">Indiranagar</span>
+                      <span class="area-tag">HSR Layout</span>
+                      <span class="area-tag">MG Road</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Investment Recommendations Engine -->
+          <div class="investment-recommendations">
+            <h2><i class="fas fa-lightbulb"></i> Personalized Investment Recommendations</h2>
+            <div class="recommendations-container">
+              
+              <div class="investor-profiles">
+                <div class="profile-selector">
+                  <div class="profile-tab active" data-profile="first-time">
+                    <i class="fas fa-user-plus"></i>
+                    <span>First-time Buyer</span>
+                  </div>
+                  <div class="profile-tab" data-profile="investor">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Seasoned Investor</span>
+                  </div>
+                  <div class="profile-tab" data-profile="family">
+                    <i class="fas fa-home"></i>
+                    <span>Family Upgrade</span>
+                  </div>
+                  <div class="profile-tab" data-profile="nri">
+                    <i class="fas fa-globe"></i>
+                    <span>NRI Investment</span>
+                  </div>
+                </div>
+
+                <div class="profile-content" id="profileContent">
+                  <!-- Dynamic content based on selected profile -->
+                </div>
+              </div>
+
+              <div class="recommendation-summary">
+                <h3><i class="fas fa-target"></i> Smart Recommendations</h3>
+                <div class="recommendation-cards">
+                  
+                  <div class="rec-card conservative">
+                    <div class="rec-header">
+                      <i class="fas fa-shield-alt"></i>
+                      <h4>Conservative Choice</h4>
+                      <span class="risk-badge low">Low Risk</span>
+                    </div>
+                    <div class="rec-area">JP Nagar Phase 6</div>
+                    <div class="rec-metrics">
+                      <div class="rec-metric">
+                        <span class="metric-label">Expected ROI</span>
+                        <span class="metric-value">8-12%</span>
+                      </div>
+                      <div class="rec-metric">
+                        <span class="metric-label">Rental Yield</span>
+                        <span class="metric-value">4.2%</span>
+                      </div>
+                      <div class="rec-metric">
+                        <span class="metric-label">Investment Range</span>
+                        <span class="metric-value">₹60L-1.2Cr</span>
+                      </div>
+                    </div>
+                    <div class="rec-highlights">
+                      <div class="highlight">✓ Established neighborhood</div>
+                      <div class="highlight">✓ Good schools nearby</div>
+                      <div class="highlight">✓ Stable appreciation</div>
+                    </div>
+                  </div>
+
+                  <div class="rec-card balanced">
+                    <div class="rec-header">
+                      <i class="fas fa-balance-scale"></i>
+                      <h4>Balanced Growth</h4>
+                      <span class="risk-badge medium">Medium Risk</span>
+                    </div>
+                    <div class="rec-area">HSR Layout Sector 2</div>
+                    <div class="rec-metrics">
+                      <div class="rec-metric">
+                        <span class="metric-label">Expected ROI</span>
+                        <span class="metric-value">12-18%</span>
+                      </div>
+                      <div class="rec-metric">
+                        <span class="metric-label">Rental Yield</span>
+                        <span class="metric-value">5.1%</span>
+                      </div>
+                      <div class="rec-metric">
+                        <span class="metric-label">Investment Range</span>
+                        <span class="metric-value">₹80L-1.8Cr</span>
+                      </div>
+                    </div>
+                    <div class="rec-highlights">
+                      <div class="highlight">✓ Metro connectivity</div>
+                      <div class="highlight">✓ Family-friendly</div>
+                      <div class="highlight">✓ High rental demand</div>
+                    </div>
+                  </div>
+
+                  <div class="rec-card aggressive">
+                    <div class="rec-header">
+                      <i class="fas fa-rocket"></i>
+                      <h4>High Growth</h4>
+                      <span class="risk-badge high">High Risk</span>
+                    </div>
+                    <div class="rec-area">Sarjapur Road Corridor</div>
+                    <div class="rec-metrics">
+                      <div class="rec-metric">
+                        <span class="metric-label">Expected ROI</span>
+                        <span class="metric-value">18-28%</span>
+                      </div>
+                      <div class="rec-metric">
+                        <span class="metric-label">Rental Yield</span>
+                        <span class="metric-value">5.8%</span>
+                      </div>
+                      <div class="rec-metric">
+                        <span class="metric-label">Investment Range</span>
+                        <span class="metric-value">₹50L-1.5Cr</span>
+                      </div>
+                    </div>
+                    <div class="rec-highlights">
+                      <div class="highlight">✓ Rapid infrastructure development</div>
+                      <div class="highlight">✓ IT corridor proximity</div>
+                      <div class="highlight">✓ High appreciation potential</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Market Trends & Future Outlook Flowchart -->
+          <div class="market-trends-flowchart">
+            <h2><i class="fas fa-route"></i> Market Trends & Future Outlook</h2>
+            
+            <div class="trends-flowchart-container">
+              
+              <!-- Current Market Status -->
+              <div class="flow-section current-status">
+                <h3><i class="fas fa-calendar-day"></i> Current Market Status (2024)</h3>
+                <div class="status-grid">
+                  <div class="status-card positive">
+                    <div class="status-icon">
+                      <i class="fas fa-arrow-up"></i>
+                    </div>
+                    <div class="status-content">
+                      <h4>Strong Demand</h4>
+                      <p>82% occupancy rate across commercial spaces</p>
+                      <span class="status-metric">+12% YoY growth</span>
+                    </div>
+                  </div>
+                  
+                  <div class="status-card neutral">
+                    <div class="status-icon">
+                      <i class="fas fa-balance-scale"></i>
+                    </div>
+                    <div class="status-content">
+                      <h4>Balanced Supply</h4>
+                      <p>New supply meeting demand in prime locations</p>
+                      <span class="status-metric">2.8M sqft added</span>
+                    </div>
+                  </div>
+                  
+                  <div class="status-card positive">
+                    <div class="status-icon">
+                      <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="status-content">
+                      <h4>Price Appreciation</h4>
+                      <p>Steady growth in property values</p>
+                      <span class="status-metric">₹185/sqft avg rent</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Future Trends Flowchart -->
+              <div class="flow-section future-trends">
+                <h3><i class="fas fa-crystal-ball"></i> Future Market Trajectory (2024-2027)</h3>
+                
+                <div class="trends-flowchart">
+                  
+                  <!-- Infrastructure Development Path -->
+                  <div class="trend-path infrastructure">
+                    <div class="path-header">
+                      <div class="path-icon">
+                        <i class="fas fa-subway"></i>
+                      </div>
+                      <h4>Infrastructure Boost</h4>
+                    </div>
+                    
+                    <div class="path-timeline">
+                      <div class="timeline-step">
+                        <div class="step-year">2024-2025</div>
+                        <div class="step-content">
+                          <h5>Metro Phase 2 Completion</h5>
+                          <p>Purple & Green line extensions</p>
+                        </div>
+                        <div class="step-impact positive">+20-30% value increase</div>
+                      </div>
+                      
+                      <div class="timeline-arrow">
+                        <i class="fas fa-arrow-down"></i>
+                      </div>
+                      
+                      <div class="timeline-step">
+                        <div class="step-year">2025-2026</div>
+                        <div class="step-content">
+                          <h5>Peripheral Ring Road</h5>
+                          <p>Better connectivity to IT hubs</p>
+                        </div>
+                        <div class="step-impact positive">+15% accessibility boost</div>
+                      </div>
+                      
+                      <div class="timeline-arrow">
+                        <i class="fas fa-arrow-down"></i>
+                      </div>
+                      
+                      <div class="timeline-step">
+                        <div class="step-year">2026-2027</div>
+                        <div class="step-content">
+                          <h5>Airport Metro Link</h5>
+                          <p>Direct connectivity to airport</p>
+                        </div>
+                        <div class="step-impact positive">+25% commercial appeal</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Supply-Demand Balance Path -->
+                  <div class="trend-path supply-demand">
+                    <div class="path-header">
+                      <div class="path-icon">
+                        <i class="fas fa-chart-bar"></i>
+                      </div>
+                      <h4>Supply-Demand Dynamics</h4>
+                    </div>
+                    
+                    <div class="path-timeline">
+                      <div class="timeline-step">
+                        <div class="step-year">2024</div>
+                        <div class="step-content">
+                          <h5>Healthy Absorption</h5>
+                          <p>85% of new supply absorbed</p>
+                        </div>
+                        <div class="step-impact neutral">Balanced market</div>
+                      </div>
+                      
+                      <div class="timeline-arrow">
+                        <i class="fas fa-arrow-down"></i>
+                      </div>
+                      
+                      <div class="timeline-step">
+                        <div class="step-year">2025</div>
+                        <div class="step-content">
+                          <h5>Premium Locations</h5>
+                          <p>Limited supply in prime areas</p>
+                        </div>
+                        <div class="step-impact positive">Price premium increase</div>
+                      </div>
+                      
+                      <div class="timeline-arrow">
+                        <i class="fas fa-arrow-down"></i>
+                      </div>
+                      
+                      <div class="timeline-step">
+                        <div class="step-year">2026-2027</div>
+                        <div class="step-content">
+                          <h5>Emerging Corridors</h5>
+                          <p>New supply in outer areas</p>
+                        </div>
+                        <div class="step-impact opportunity">Value opportunities</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Technology & Business Path -->
+                  <div class="trend-path technology">
+                    <div class="path-header">
+                      <div class="path-icon">
+                        <i class="fas fa-laptop-code"></i>
+                      </div>
+                      <h4>Tech & Business Evolution</h4>
+                    </div>
+                    
+                    <div class="path-timeline">
+                      <div class="timeline-step">
+                        <div class="step-year">2024</div>
+                        <div class="step-content">
+                          <h5>Hybrid Work Model</h5>
+                          <p>Flexible office spaces in demand</p>
+                        </div>
+                        <div class="step-impact positive">Co-working growth +45%</div>
+                      </div>
+                      
+                      <div class="timeline-arrow">
+                        <i class="fas fa-arrow-down"></i>
+                      </div>
+                      
+                      <div class="timeline-step">
+                        <div class="step-year">2025</div>
+                        <div class="step-content">
+                          <h5>AI & Fintech Boom</h5>
+                          <p>New startups seeking office space</p>
+                        </div>
+                        <div class="step-impact positive">Premium office demand</div>
+                      </div>
+                      
+                      <div class="timeline-arrow">
+                        <i class="fas fa-arrow-down"></i>
+                      </div>
+                      
+                      <div class="timeline-step">
+                        <div class="step-year">2026-2027</div>
+                        <div class="step-content">
+                          <h5>Smart Buildings</h5>
+                          <p>IoT-enabled commercial spaces</p>
+                        </div>
+                        <div class="step-impact positive">20% rent premium</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Investment Opportunities Timeline -->
+              <div class="flow-section investment-opportunities">
+                <h3><i class="fas fa-bullseye"></i> Strategic Investment Windows</h3>
+                
+                <div class="opportunities-flowchart">
+                  
+                  <div class="opportunity-branch immediate">
+                    <div class="branch-header">
+                      <div class="branch-timeline">2024 - Immediate</div>
+                      <div class="branch-title">Quick Wins</div>
+                    </div>
+                    
+                    <div class="opportunity-cards">
+                      <div class="opportunity-card high-priority">
+                        <div class="card-icon">
+                          <i class="fas fa-coffee"></i>
+                        </div>
+                        <div class="card-content">
+                          <h5>F&B Spaces</h5>
+                          <p>High footfall areas</p>
+                          <div class="card-metrics">
+                            <span class="metric">ROI: 25-35%</span>
+                            <span class="metric">Timeline: 6-12 months</span>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div class="opportunity-card medium-priority">
+                        <div class="card-icon">
+                          <i class="fas fa-laptop"></i>
+                        </div>
+                        <div class="card-content">
+                          <h5>Co-working Hubs</h5>
+                          <p>Tech corridors</p>
+                          <div class="card-metrics">
+                            <span class="metric">ROI: 30-40%</span>
+                            <span class="metric">Timeline: 3-6 months</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="flow-connector">
+                    <div class="connector-line"></div>
+                    <div class="connector-arrow">
+                      <i class="fas fa-arrow-right"></i>
+                    </div>
+                  </div>
+
+                  <div class="opportunity-branch medium-term">
+                    <div class="branch-header">
+                      <div class="branch-timeline">2025-2026 - Strategic</div>
+                      <div class="branch-title">Growth Phase</div>
+                    </div>
+                    
+                    <div class="opportunity-cards">
+                      <div class="opportunity-card high-priority">
+                        <div class="card-icon">
+                          <i class="fas fa-subway"></i>
+                        </div>
+                        <div class="card-content">
+                          <h5>Metro Adjacent</h5>
+                          <p>New station areas</p>
+                          <div class="card-metrics">
+                            <span class="metric">ROI: 40-60%</span>
+                            <span class="metric">Timeline: 12-18 months</span>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div class="opportunity-card medium-priority">
+                        <div class="card-icon">
+                          <i class="fas fa-store"></i>
+                        </div>
+                        <div class="card-content">
+                          <h5>Retail Complexes</h5>
+                          <p>Emerging neighborhoods</p>
+                          <div class="card-metrics">
+                            <span class="metric">ROI: 35-50%</span>
+                            <span class="metric">Timeline: 18-24 months</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="flow-connector">
+                    <div class="connector-line"></div>
+                    <div class="connector-arrow">
+                      <i class="fas fa-arrow-right"></i>
+                    </div>
+                  </div>
+
+                  <div class="opportunity-branch long-term">
+                    <div class="branch-header">
+                      <div class="branch-timeline">2027+ - Future</div>
+                      <div class="branch-title">Value Creation</div>
+                    </div>
+                    
+                    <div class="opportunity-cards">
+                      <div class="opportunity-card high-priority">
+                        <div class="card-icon">
+                          <i class="fas fa-city"></i>
+                        </div>
+                        <div class="card-content">
+                          <h5>Smart Districts</h5>
+                          <p>IoT-enabled areas</p>
+                          <div class="card-metrics">
+                            <span class="metric">ROI: 60-80%</span>
+                            <span class="metric">Timeline: 2-3 years</span>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div class="opportunity-card medium-priority">
+                        <div class="card-icon">
+                          <i class="fas fa-leaf"></i>
+                        </div>
+                        <div class="card-content">
+                          <h5>Sustainable Spaces</h5>
+                          <p>Green buildings</p>
+                          <div class="card-metrics">
+                            <span class="metric">ROI: 50-70%</span>
+                            <span class="metric">Timeline: 3-4 years</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Key Takeaways -->
+              <div class="flow-section key-takeaways">
+                <h3><i class="fas fa-key"></i> Key Investment Insights</h3>
+                
+                <div class="takeaways-grid">
+                  <div class="takeaway-card timing">
+                    <div class="takeaway-icon">
+                      <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="takeaway-content">
+                      <h4>Optimal Timing</h4>
+                      <p>2024-2025 offers the best entry window before infrastructure completion drives up prices</p>
+                    </div>
+                  </div>
+                  
+                  <div class="takeaway-card location">
+                    <div class="takeaway-icon">
+                      <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="takeaway-content">
+                      <h4>Prime Locations</h4>
+                      <p>Focus on metro-adjacent areas and emerging tech corridors for maximum appreciation</p>
+                    </div>
+                  </div>
+                  
+                  <div class="takeaway-card diversification">
+                    <div class="takeaway-icon">
+                      <i class="fas fa-chart-pie"></i>
+                    </div>
+                    <div class="takeaway-content">
+                      <h4>Portfolio Mix</h4>
+                      <p>Combine immediate income (F&B) with long-term growth (tech spaces) for balanced returns</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- Loading Overlay -->
+  <div class="loading-overlay" id="loadingOverlay">
+    <div class="loading-content">
+      <div class="loading-spinner"></div>
+      <h3>Analyzing Your Investment...</h3>
+      <p>Our AI is crunching the numbers</p>
+    </div>
+  </div>
+
+  <script src="dashboard.js"></script>
+</body>
+</html>
